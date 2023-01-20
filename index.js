@@ -1,6 +1,9 @@
 import inquirer from 'inquirer';
+// const inquirer = require('inquirer');
 import fs from 'fs';
+// const fs = require('fs');
 import { Employee, Manager, Engineer, Intern } from './lib/positions.js';
+// import { createManagerCards } from './src/generateCards.js'
 
 const managerData = []; 
 const engineerData = [];
@@ -208,9 +211,81 @@ const internFunction = async () => {
     internData.push(newIntern);
 };
 
+const createManagerCards = () => {
+    let listOfManagers = [];
+
+    managerData.forEach(data => {
+        let bootstrapCard = 
+        `
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h2>${data.name}</h2>
+                <h3>${data.role}</h3>
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item1">Id: <span>${data.id}</span> </li>
+                    <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                    <li class="list-group-item3">Office Number: <span>${data.officeNumber}</span></li>
+                </ul>
+        </div>
+        `
+        
+        listOfManagers.push(bootstrapCard);
+    })
+    return listOfManagers.join('');
+};
+
+const createEngineerCards = () => {
+    let listOfEngineers = [];
+
+    engineerData.forEach(data => {
+        let bootstrapCard = 
+        `
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h2>${data.name}</h2>
+                <h3>${data.role}</h3>
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item1">Id: <span>${data.id}</span> </li>
+                    <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                    <li class="list-group-item3">Office Number: <span>${data.gitHubUsername}</span></li>
+                </ul>
+        </div>
+        `
+        
+        listOfEngineers.push(bootstrapCard);
+    })
+    return listOfEngineers.join('');
+};
+
+const createInternCards = () => {
+    let listOfInterns = [];
+
+    internData.forEach(data => {
+        let bootstrapCard =
+        `
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h2>${data.name}</h2>
+                <h3>${data.role}</h3>
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item1">Id: <span>${data.id}</span> </li>
+                    <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                    <li class="list-group-item3">Office Number: <span>${data.school}</span></li>
+                </ul>
+        </div>
+        `
+        
+        listOfInterns.push(bootstrapCard);
+    });
+    return listOfInterns.join('');
+}
+
+//Generate the HTML first, then add to it with the functions above
 const writeToFile = (fileName, data) => {
     fs.writeFile(fileName, data, (err) => {
-        //Node uses the failure check first
         if (err) {
             console.log("An error occurred")
         }
@@ -218,78 +293,7 @@ const writeToFile = (fileName, data) => {
     })
 }
 
-//I think that I have to break this up unto three different functions (manager, engineer, and intern), and then set them to the HTML after the HTML is generated. Doing things this way is too complicated
-const createEmployeeCards = () => {
-    //MANAGER
-    console.log("Create employee Cards function running");
-    console.log(`228: The current allData Array is :${allData}`)
-    allData.forEach(data => {
-        console.log(`Line 231: the data from the allData array is ${data}`)
-        if (data.role === 'Manager') {
-            let generatedRow = document.createElement("div");
-            generatedRow.setAttribute("class", "generated-row");
-
-            generateDRow.innerHTML = `
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                    <h2>${data.employeeName}</h2>
-                    <h3>${data.role}</h3>
-                </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item1">Id: <span id="id-number">${data.id}</span> </li>
-                        <li class="list-group-item2">Email: <span id="email">${data.email}</span></li>
-                        <li class="list-group-item3">Office Number: <span id="office-number">${data.officeNumber}</span></li>
-                    </ul>
-            </div>
-        `
-        document.querySelector(".container").appendChild(generatedRow);
-
-        //ENGINEER
-        }  else if (data.role === 'Engineer') {
-            let generatedRow = document.createElement("div");
-            generatedRow.setAttribute("class", "generated-row");
-
-            generateDRow.innerHTML = `
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                    <h2>${data.employeeName}</h2>
-                    <h3>${data.role}</h3>
-                </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item1">Id: <span id="id-number">${data.id}</span> </li>
-                        <li class="list-group-item2">Email: <span id="email">${data.email}</span></li>
-                        <li class="list-group-item3">Office Number: <span id="github-username">${data.gitHubUsername}</span></li>
-                    </ul>
-            </div>
-        `
-        document.querySelector(".container").appendChild(generatedRow);    
-        //INTERN
-        } else if (data.role === 'Intern') {
-            let generatedRow = document.createElement("div");
-            generatedRow.setAttribute("class", "generated-row");
-
-            generateRow.innerHTML = `
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                    <h2>${data.employeeName}</h2>
-                    <h3>${data.role}</h3>
-                </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item1">Id: <span id="id-number">${data.id}</span> </li>
-                        <li class="list-group-item2">Email: <span id="email">${data.email}</span></li>
-                        <li class="list-group-item3">Office Number: <span id="school">${data.school}</span></li>
-                    </ul>
-            </div>
-        `
-        document.querySelector(".container").appendChild(generatedRow);
-        }  
-    })
-}
-
-//Generate the HTML first, then add to it with an if then statement
-
 const generateHTML = () => {
-    console.log("Writing to the file...")
     return `
     <!doctype html>
     <html lang="en">
@@ -300,7 +304,7 @@ const generateHTML = () => {
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
-        <script src="./index.js" defer></script>
+        <script src="./src/script.js"></script>
     </head>
     <body>
         <header>
@@ -308,8 +312,9 @@ const generateHTML = () => {
         </header>
 
         <div class="container">
-            <div class="managers">
-                
+            <div class="manager">${createManagerCards()}</div>
+            <div class="engineer">${createEngineerCards()}</div>
+            <div class="intern">${createInternCards()}</div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -318,23 +323,24 @@ const generateHTML = () => {
     </body>
     </html>
     `
-}
+} 
 
 const beginInquirerQuestions = async () => {
     let menu = await mainMenu();
+
+    //We get the string return value
     let writeHTML = await generateHTML();
-    let writeToTheFile = await writeToFile(`./index.html`, writeHTML);
-    let addRolesToHTML = await createEmployeeCards();
+
+    //We write to the file './index.html' with the string contents of writeHTML
+    let wtf = await writeToFile(`./index.html`, writeHTML);
+
+    //I keep getting an error that node doesn't understand what 'document' is, but this shouldn't matter since the HTML page is being created first, and is already created when the function below looks to add to it?
+    // let createWtf = await createManagerCard();
 }
 
 beginInquirerQuestions();
 
-// const init = async () => {
-//     //awaiting the prompt method that takes in a set of questions and saves the user input to the variable 'responses'
-//     let responses = await inquirer.prompt(questionsForReadme);
+// module.exports = { managerData, engineerData, internData };
 
-//     //Writes to the MD file in the first argument, and passes in the user responses as the second argument
-//     writeToFile(`./readmeFile.md`, generateMarkdown(responses));
-// }
 
 
