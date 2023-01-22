@@ -249,7 +249,7 @@ const createEngineerCards = () => {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item1">Id: <span>${data.id}</span> </li>
                     <li class="list-group-item2">Email: <span>${data.email}</span></li>
-                    <li class="list-group-item3">Office Number: <span>${data.gitHubUsername}</span></li>
+                    <li class="list-group-item3">Github Username: <span>${data.gitHubUserName}</span></li>
                 </ul>
         </div>
         `
