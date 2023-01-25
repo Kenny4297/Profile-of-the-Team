@@ -1,16 +1,12 @@
 import inquirer from 'inquirer';
-// const inquirer = require('inquirer');
 import fs from 'fs';
-// const fs = require('fs');
 import { Employee, Manager, Engineer, Intern } from './lib/positions.js';
-// import { createManagerCards } from './src/generateCards.js'
 
 const managerData = []; 
 const engineerData = [];
 const internData = [];
 
-//Creating the functions to be called in regards to the questions
-
+//Creating the functions to be called in regards to the prompts
 const mainMenu = async () => {
     const choice = await inquirer.prompt([
         {
@@ -216,19 +212,19 @@ const createManagerCards = () => {
 
     managerData.forEach(data => {
         let bootstrapCard = 
-        `
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                <h2>${data.name}</h2>
-                <h3>${data.role}</h3>
-            </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item1">Id: <span>${data.id}</span> </li>
-                    <li class="list-group-item2">Email: <span>${data.email}</span></li>
-                    <li class="list-group-item3">Office Number: <span>${data.officeNumber}</span></li>
-                </ul>
+    `
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <h2>${data.name}</h2>
+            <h3>${data.role}</h3>
         </div>
-        `
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item1">Id: <span>${data.id}</span> </li>
+                <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                <li class="list-group-item3">Office Number: <span>${data.officeNumber}</span></li>
+            </ul>
+    </div>
+    `
         
         listOfManagers.push(bootstrapCard);
     })
@@ -240,19 +236,19 @@ const createEngineerCards = () => {
 
     engineerData.forEach(data => {
         let bootstrapCard = 
-        `
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                <h2>${data.name}</h2>
-                <h3>${data.role}</h3>
-            </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item1">Id: <span>${data.id}</span> </li>
-                    <li class="list-group-item2">Email: <span>${data.email}</span></li>
-                    <li class="list-group-item3">Github Username: <span>${data.gitHubUserName}</span></li>
-                </ul>
+    `
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <h2>${data.name}</h2>
+            <h3>${data.role}</h3>
         </div>
-        `
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item1">Id: <span>${data.id}</span> </li>
+                <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                <li class="list-group-item3">Github Username: <span>${data.gitHubUserName}</span></li>
+            </ul>
+    </div>
+    `
         
         listOfEngineers.push(bootstrapCard);
     })
@@ -264,23 +260,39 @@ const createInternCards = () => {
 
     internData.forEach(data => {
         let bootstrapCard =
-        `
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                <h2>${data.name}</h2>
-                <h3>${data.role}</h3>
-            </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item1">Id: <span>${data.id}</span> </li>
-                    <li class="list-group-item2">Email: <span>${data.email}</span></li>
-                    <li class="list-group-item3">Office Number: <span>${data.school}</span></li>
-                </ul>
+    `
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <h2>${data.name}</h2>
+            <h3>${data.role}</h3>
         </div>
-        `
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item1">Id: <span>${data.id}</span> </li>
+                <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                <li class="list-group-item3">Office Number: <span>${data.school}</span></li>
+            </ul>
+    </div>
+`
         
         listOfInterns.push(bootstrapCard);
     });
     return listOfInterns.join('');
+}
+
+
+const renderTeam = () => {
+    let createCards = []
+
+    if(managerData.length > 0){
+        createCards.push(`<div class="manager">${createManagerCards()}</div>`)
+    }
+    if(internData.length > 0){
+        createCards.push(`<div class="intern">${createInternCards()}</div>`)
+    }
+    if(engineerData.length > 0){
+        createCards.push(`<div class="engineer">${createEngineerCards()}</div>`)
+    }
+    return createCards.join('')
 }
 
 //Generate the HTML first, then add to it with the functions above
@@ -294,34 +306,33 @@ const writeToFile = (fileName, data) => {
 }
 
 const generateHTML = () => {
-    return `
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <title>Title</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+return `
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
-        <script src="./src/script.js"></script>
-    </head>
-    <body>
-        <header>
-            <h1>My Team</h1>
-        </header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="./src/script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>My Team</h1>
+    </header>
 
-        <div class="container">
-            <div class="manager">${createManagerCards()}</div>
-            <div class="engineer">${createEngineerCards()}</div>
-            <div class="intern">${createInternCards()}</div>
-        </div>
+    <div class="container">
+    ${renderTeam()}
+      
+    </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
-    </html>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
     `
 } 
 
@@ -329,18 +340,15 @@ const beginInquirerQuestions = async () => {
     let menu = await mainMenu();
 
     //We get the string return value
-    let writeHTML = await generateHTML();
+    let writeHTML = generateHTML();
 
     //We write to the file './index.html' with the string contents of writeHTML
-    let wtf = await writeToFile(`./index.html`, writeHTML);
+    writeToFile(`./index.html`, writeHTML);
 
-    //I keep getting an error that node doesn't understand what 'document' is, but this shouldn't matter since the HTML page is being created first, and is already created when the function below looks to add to it?
-    // let createWtf = await createManagerCard();
 }
 
 beginInquirerQuestions();
 
-// module.exports = { managerData, engineerData, internData };
 
 
 

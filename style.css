@@ -32,7 +32,7 @@ header {
 .container {
     border: 2px solid blue;
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: space-evenly;
     /* align-items: center; */
 }
 
