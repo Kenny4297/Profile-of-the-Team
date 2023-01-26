@@ -220,7 +220,7 @@ const createManagerCards = () => {
         </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item1">Id: <span>${data.id}</span> </li>
-                <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                <li class="list-group-item2">Email: <span><a href="mailto:${data.email}?">${data.email}</a></span></li>
                 <li class="list-group-item3">Office Number: <span>${data.officeNumber}</span></li>
             </ul>
     </div>
@@ -244,8 +244,8 @@ const createEngineerCards = () => {
         </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item1">Id: <span>${data.id}</span> </li>
-                <li class="list-group-item2">Email: <span>${data.email}</span></li>
-                <li class="list-group-item3">Github Username: <span>${data.gitHubUserName}</span></li>
+                <li class="list-group-item2">Email: <span><a href="mailto:${data.email}?">${data.email}</a></span></li>
+                <li class="list-group-item3">Github Username: <span><a href="https://github.com/" target="_blank">${data.gitHubUserName}</a></span></li>
             </ul>
     </div>
     `
@@ -268,12 +268,11 @@ const createInternCards = () => {
         </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item1">Id: <span>${data.id}</span> </li>
-                <li class="list-group-item2">Email: <span>${data.email}</span></li>
+                <li class="list-group-item2">Email: <span><a href="mailto:${data.email}?">${data.email}</a></span></li>
                 <li class="list-group-item3">Office Number: <span>${data.school}</span></li>
             </ul>
     </div>
 `
-        
         listOfInterns.push(bootstrapCard);
     });
     return listOfInterns.join('');
