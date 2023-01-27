@@ -1,8 +1,13 @@
-import inquirer from 'inquirer';
-import fs from 'fs';
-import Manager from './lib/manager.js'
-import Engineer from './lib/engineer.js'
-import Intern from './lib/intern.js'
+// import inquirer from 'inquirer';
+// import fs from 'fs';
+// import Manager from './lib/manager.js'
+// import Engineer from './lib/engineer.js'
+// import Intern from './lib/intern.js'
+const inquirer = require('inquirer');
+const fs = require('fs');
+const Manager = require('./lib/manager.js');
+const Engineer = require('./lib/engineer.js')
+const Intern = require('./lib/intern.js')
 
 const managerData = []; 
 const engineerData = [];

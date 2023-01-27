@@ -1,5 +1,5 @@
-const { Employee } = require('../lib/positions.js');
-// import { Employee } from "../lib/positions";
+const { Employee } = require('./lib/employee.js');
+
 //Employee Testing
 test("Check to see if the 'get name()' getter returns the Employee's name", () => {
     expect(Employee.employeeName).toBe(this._employeeName)

@@ -1,5 +1,4 @@
-const { Intern } = require('../lib/positions.js');
-// import { Intern } from "../lib/positions";
+const { Intern } = require('../lib/intern.js');
 //Intern Testing
 test("Check to see if the 'get name()' getter returns the intern's name", () => {
     const intern = new Intern("John", 1, "john@example.com", "John Hopkins");
