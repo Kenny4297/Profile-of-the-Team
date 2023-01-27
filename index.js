@@ -1,7 +1,8 @@
 import inquirer from 'inquirer';
 import fs from 'fs';
-import { Manager, Engineer, Intern } from './lib/positions.js';
-// const { Manager, Engineer, Intern } = require('./lib/positions.js')
+import Manager from './lib/manager.js'
+import Engineer from './lib/engineer.js'
+import Intern from './lib/intern.js'
 
 const managerData = []; 
 const engineerData = [];
