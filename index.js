@@ -170,7 +170,7 @@ const internFunction = async () => {
             name: 'internId',
             message: "Enter the intern's id:",
             validate: (response) => {
-                if (response === (NaN) && response !== '') {
+                if (isNaN(response)) {
                     return "Sorry! Please give me the intern's id. Use numbers, no characters allowed"
                 }
                 return true
@@ -182,7 +182,7 @@ const internFunction = async () => {
             name: 'internEmail',
             message: "Please enter the intern's email:",
             validate: (response) => {
-                // here we use a regular expression to check to see if it is a valid email address
+                // Here we use a regular expression to check to see if it is a valid email address
                 let validEmailRegex = /^[^@]+@[^@]+.[^@]+$/;
                 if (!response.match(validEmailRegex)) {
                     return `Sorry! You entered ${response}, and that is not the correct format for an email. Please try again`
@@ -190,17 +190,17 @@ const internFunction = async () => {
                 return true
             }        
         },
-
+        // When the response is 4, the validation does not work
         {
             type: 'input',
             name: 'internSchool',
             message: "Please enter the intern's school:",
             validate: (response) => {
-                if (response === '') {
-                    return 'Sorry! Please enter the interns school.'
+                if (!isNaN(response)) {
+                    return "Sorry! Please give me the intern's id. Use numbers, no characters allowed"
                 }
                 return true
-            }       
+            }     
         },
     ]);
     let newIntern = new Intern(internResponses.internName, internResponses.internId, internResponses.internEmail, internResponses.internSchool)
@@ -269,7 +269,7 @@ const createInternCards = () => {
             <ul class="list-group list-group-flush">
                 <li class="list-group-item1">Id: <span>${data.id}</span> </li>
                 <li class="list-group-item2">Email: <span><a href="mailto:${data.email}?">${data.email}</a></span></li>
-                <li class="list-group-item3">Office Number: <span>${data.school}</span></li>
+                <li class="list-group-item3">School: <span>${data.school}</span></li>
             </ul>
     </div>
 `
@@ -285,11 +285,11 @@ const renderTeam = () => {
     if(managerData.length > 0){
         createCards.push(`<div class="manager">${createManagerCards()}</div>`)
     }
-    if(internData.length > 0){
-        createCards.push(`<div class="intern">${createInternCards()}</div>`)
-    }
     if(engineerData.length > 0){
-        createCards.push(`<div class="engineer">${createEngineerCards()}</div>`)
+        createCards.push(`<div class="intern">${createEngineerCards()}</div>`)
+    }
+    if(internData.length > 0){
+        createCards.push(`<div class="engineer">${createInternCards()}</div>`)
     }
     return createCards.join('')
 }
@@ -314,7 +314,7 @@ return `
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <script src="./src/script.js"></script>
 </head>
 <body>
@@ -322,7 +322,7 @@ return `
         <h1>My Team</h1>
     </header>
 
-    <div class="container">
+    <div class="container my-3">
     ${renderTeam()}
       
     </div>
@@ -332,7 +332,7 @@ return `
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
-    `
+`
 } 
 
 const beginInquirerQuestions = async () => {
