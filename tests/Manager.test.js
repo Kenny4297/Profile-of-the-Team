@@ -1,4 +1,5 @@
 const {  Manager } = require('../lib/positions.js');
+// import { Manager } from "../lib/positions";
 //Manager Testing
 test("Check to see if the 'get name()' getter returns the manager's name", () => {
     const manager = new Manager("John", 1, "john@example.com", 101);
