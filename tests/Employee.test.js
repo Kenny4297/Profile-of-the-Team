@@ -1,4 +1,4 @@
-const { Employee } = require('./lib/employee.js');
+const Employee = require('../lib/employee.js');
 
 //Employee Testing
 test("Check to see if the 'get name()' getter returns the Employee's name", () => {
