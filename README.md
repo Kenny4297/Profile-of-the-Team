@@ -13,6 +13,7 @@
 * [Tests](#tests)
 * [Questions](#questions)
 * [Criteria](#criteria)
+* [Walkthrough](#walkthrough)
 
 ### Description
 A CLI that creates a team portfolio on the DOM to show each member and some data about them.
@@ -52,3 +53,7 @@ When the client...
 * selects the intern option, they are prompted to enter the intern’s name, ID, email, and school, and are taken back to the menu.
 
 * decides to finish building their team, they are exited from the application, and the HTML is generated.
+
+### Walkthrough
+
+View the video walk through: [Walk through Video](./assets/TeamProfileGenerator.webm)

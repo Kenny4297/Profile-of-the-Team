@@ -1,8 +1,3 @@
-// import inquirer from 'inquirer';
-// import fs from 'fs';
-// import Manager from './lib/manager.js'
-// import Engineer from './lib/engineer.js'
-// import Intern from './lib/intern.js'
 const inquirer = require('inquirer');
 const fs = require('fs');
 const Manager = require('./lib/manager.js');
@@ -98,7 +93,6 @@ const managerFunction = async () => {
     let newManager = new Manager(managerResponses.managerName, managerResponses.managerId, managerResponses.managerEmail, managerResponses.officeNumber)
     managerData.push(newManager);
 };
-
 
 const engineerFunction = async () => {
     const engineerResponses = await inquirer.prompt([
@@ -285,7 +279,7 @@ const createInternCards = () => {
     return listOfInterns.join('');
 }
 
-
+//Checks to see if the user selected a specific team, and if so, adds it to the larger function that generates the bootstrap cards
 const renderTeam = () => {
     let createCards = []
 
@@ -350,7 +344,6 @@ const beginInquirerQuestions = async () => {
 
     //We write to the file './index.html' with the string contents of writeHTML
     writeToFile(`./index.html`, writeHTML);
-
 }
 
 beginInquirerQuestions();
