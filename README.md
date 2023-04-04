@@ -26,7 +26,7 @@ You can run this project from the index.js file.
 Fork the repository and feel free to add any other features that will improve the app!
 
 ### Tests
-In the terminal, run the command "npm test", and the tests should run.
+In the terminal, run the command "npm test", and the tests will run. These tests make sure that the correct information is being inputted by the user for each category.
 
 ### Questions
 Any questions? Visit the github repository here! https://github.com/Kenny4297/Profile-of-the-Team
